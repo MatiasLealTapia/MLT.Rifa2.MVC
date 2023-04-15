@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MLT.Rifa2.MVC.props" />
+</Project>

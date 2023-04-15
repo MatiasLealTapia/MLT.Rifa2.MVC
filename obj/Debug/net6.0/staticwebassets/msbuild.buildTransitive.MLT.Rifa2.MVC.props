@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MLT.Rifa2.MVC.props" />
+</Project>
