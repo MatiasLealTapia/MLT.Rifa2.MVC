@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\matias\\MLT\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj": {}
+    "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj": {}
   },
   "projects": {
-    "D:\\matias\\MLT\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj": {
+    "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\matias\\MLT\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj",
+        "projectUniqueName": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj",
         "projectName": "MLT.Rifa2.MVC",
-        "projectPath": "D:\\matias\\MLT\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj",
-        "packagesPath": "C:\\Users\\matias\\.nuget\\packages\\",
-        "outputPath": "D:\\matias\\MLT\\MLT.Rifa2.MVC\\obj\\",
+        "projectPath": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\MLT.Rifa2.MVC.csproj",
+        "packagesPath": "C:\\Users\\matia\\.nuget\\packages\\",
+        "outputPath": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\matias\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\matia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
