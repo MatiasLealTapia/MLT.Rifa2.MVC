@@ -1,0 +1,80 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model OrganizationTypeViewModel
+
+@{
+    ViewData["Title"] = "Editar tipo " + Model.OrganizationTypeName;
+    var mensajeError = TempData["mensajeError"];
+    var controller = "OrganizationType";
+}
+
+<div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editando tipo @Model.OrganizationTypeName</h5>
+            <a asp-action="Lista" type="button" class="btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        @if (!Model.IsDeleted)
+        {
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="OrganizationTypeId" />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="OrganizationTypeName" placeholder="Tipo de Organización" />
+                                <label>Tipo de Organización</label>
+                            </div>
+                        </div>
+                        <div class="col-lg">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Editar</button>
+                            <button type="button" onclick="willDelete(@Model.OrganizationTypeId, '@controller')" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Eliminar</button>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" disabled />
+                        <label class="form-check-label">Eliminado</label>
+                    </div>
+                </div>
+            </form>
+            <a asp-action="Lista" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+        }
+        else
+        {
+            <div class="modal-body isDeleted">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" asp-for="OrganizationTypeName" placeholder="Tipo de Organización" disabled />
+                            <label>Tipo de Organización</label>
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <button class="btn btn-primary mb-2 disabled"><i class="bi bi-pencil-fill"></i> Editar</button>
+                        <button class="btn btn-danger mb-2 disabled"><i class="bi bi-trash-fill"></i> Eliminar</button>
+                    </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked disabled />
+                    <label class="form-check-label">Eliminado</label>
+                </div>
+            </div>
+            <h4 class="m-5">El tipo @Model.OrganizationTypeName esta borrado, no puedes editarlo.</h4>
+            <a asp-action="Lista" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    @if (mensajeError != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: '@mensajeError',
+                    icon: 'error'
+                });
+            });
+        </script>
+    }
+}

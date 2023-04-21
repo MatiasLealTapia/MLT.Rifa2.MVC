@@ -37,7 +37,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<IOrganizationTypeService, OrganizationTypeService>(c =>
 {
     c.Timeout = TimeSpan.FromMinutes(5);
-    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Region/");
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}OrganizationType/");
 });
 
 var app = builder.Build();

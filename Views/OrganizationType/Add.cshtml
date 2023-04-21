@@ -1,0 +1,50 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model OrganizationTypeViewModel
+
+@{
+    ViewData["Title"] = "Añadir Tipo de Organización";
+    var mensajeError = TempData["mensajeError"];
+}
+
+<div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Añadiendo un tipo de organización</h5>
+            <a asp-action="Lista" type="button" class="btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        <form asp-action="Add">
+            <input type="hidden" asp-for="OrganizationTypeId" value="0" />
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" asp-for="OrganizationTypeName" placeholder="Tipo de Organización" />
+                            <label>Tipo de Organización</label>
+                            <span asp-validation-for="OrganizationTypeName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn btn-success mb-2"><i class="bi bi-check-lg"></i> Crear</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <a asp-action="Lista" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    @if (mensajeError != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: '@mensajeError',
+                    icon: 'error'
+                });
+            });
+        </script>
+    }
+}

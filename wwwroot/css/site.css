@@ -1,18 +1,41 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    min-width: 1100px;
+    min-height: 800px;
+}
+
+.tarjeta {
+    cursor: pointer;
+    color: rgb(0,0,0,0.6);
+    transition: linear, 0.25s;
+    background-color: rgb(65, 136, 195)
+}
+
+    .tarjeta:hover {
+        color: rgb(255,255,255,1);
+        background-color: rgb(77, 174, 255)
+    }
+
+    .tarjeta:hover {
+        color: rgb(255,255,255,1);
+        background-color: rgb(77, 174, 255)
+    }
+
+.isDeleted {
+    color: darkgray !important;
 }

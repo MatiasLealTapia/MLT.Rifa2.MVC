@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\wwwroot\\js\\SwalInjector.js",
+      "PackagePath": "staticwebassets\\js\\SwalInjector.js"
+    },
+    {
       "Id": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

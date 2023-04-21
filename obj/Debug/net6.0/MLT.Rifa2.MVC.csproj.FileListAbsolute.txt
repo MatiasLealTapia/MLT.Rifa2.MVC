@@ -60,3 +60,5 @@ E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\obj\Debug\net6.0\refint\MLT.Rifa2.MVC.dll
 E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\obj\Debug\net6.0\MLT.Rifa2.MVC.pdb
 E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\obj\Debug\net6.0\MLT.Rifa2.MVC.genruntimeconfig.cache
 E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\obj\Debug\net6.0\ref\MLT.Rifa2.MVC.dll
+E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\bin\Debug\net6.0\Newtonsoft.Json.dll
+E:\Proyectos\MLT.Rifa2\MLT.Rifa2.MVC\obj\Debug\net6.0\MLT.Rifa2.MVC.csproj.CopyComplete

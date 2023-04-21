@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rmE7Uyu77Lzu7sOZY/4lNxx2gAWFPBm81ihmFZB/6jM=",
+  "Hash": "+eQTpcZdF6i0Gqaxxq/ET4l7Q1IK5KdO10K7dArKHXo=",
   "Source": "MLT.Rifa2.MVC",
   "BasePath": "_content/MLT.Rifa2.MVC",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\wwwroot\\js\\SwalInjector.js",
+      "SourceId": "MLT.Rifa2.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\wwwroot\\",
+      "BasePath": "_content/MLT.Rifa2.MVC",
+      "RelativePath": "js/SwalInjector.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SwalInjector.js"
     },
     {
       "Identity": "E:\\Proyectos\\MLT.Rifa2\\MLT.Rifa2.MVC\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
