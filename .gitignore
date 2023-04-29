@@ -363,3 +363,10 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/obj/Debug/net6.0/MLT.Rifa2.MVC.csproj.AssemblyReference.cache
+/obj/Debug/net6.0/MLT.Rifa2.MVC.assets.cache
+/obj/Debug/net6.0/MLT.Rifa2.MVC.GeneratedMSBuildEditorConfig.editorconfig
+/obj/MLT.Rifa2.MVC.csproj.nuget.dgspec.json
+/obj/MLT.Rifa2.MVC.csproj.nuget.g.props
+/obj/project.assets.json
+/obj/project.nuget.cache
