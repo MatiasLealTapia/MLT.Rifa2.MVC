@@ -11,7 +11,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Editando tipo @Model.OrganizationTypeName</h5>
-            <a asp-action="Lista" type="button" class="btn"><i class="bi bi-arrow-left"></i></a>
+            <a asp-action="List" type="button" class="btn"><i class="bi bi-arrow-left"></i></a>
         </div>
         @if (!Model.IsDeleted)
         {
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <h4 class="m-5">El tipo @Model.OrganizationTypeName esta borrado, no puedes editarlo.</h4>
-            <a asp-action="Lista" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+            <a asp-action="List" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
         }
     </div>
 </div>

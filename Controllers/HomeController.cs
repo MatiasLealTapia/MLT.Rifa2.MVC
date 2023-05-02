@@ -23,6 +23,11 @@ namespace MLT.Rifa2.MVC.Controllers
             return View();
         }
 
+        public IActionResult AdminList()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

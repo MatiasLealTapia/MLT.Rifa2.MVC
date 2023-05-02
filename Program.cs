@@ -39,6 +39,16 @@ builder.Services.AddHttpClient<IOrganizationTypeService, OrganizationTypeService
     c.Timeout = TimeSpan.FromMinutes(5);
     c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}OrganizationType/");
 });
+builder.Services.AddHttpClient<IOrganizationService, OrganizationService>(c =>
+{
+    c.Timeout = TimeSpan.FromMinutes(5);
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Organization/");
+});
+builder.Services.AddHttpClient<IGenericService, GenericService>(c =>
+{
+    c.Timeout = TimeSpan.FromMinutes(5);
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Generic/");
+});
 
 var app = builder.Build();
 

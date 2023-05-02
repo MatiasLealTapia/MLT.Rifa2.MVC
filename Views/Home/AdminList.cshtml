@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Admin List";
+}
+
+<div class="text-center pt-4 mb-2">
+    <h1 class="display-4"><b>Lista de modelos a administrar</b></h1>
+    <h4>(ADMIN)</h4>
+</div>
+
+<div class="pt-2">
+    <div class="row justify-content-center">
+        <div class="col-lg-auto">
+            <a asp-controller="OrganizationType" asp-action="List" class="btn btn-primary rounded-2">OrganizationType</a>
+        </div>
+        <div class="col-lg-auto">
+            <a asp-controller="Organization" asp-action="List" class="btn btn-primary rounded-2">Organization</a>
+        </div>
+    </div>
+</div>

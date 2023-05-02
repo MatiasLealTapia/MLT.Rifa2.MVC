@@ -1,16 +1,16 @@
 ﻿@using MLT.Rifa2.MVC.ViewModel
-@model IEnumerable<OrganizationTypeViewModel>
+@model IEnumerable<OrganizationViewModel>
 
 @{
-    ViewData["Title"] = "Administrar Tipos de Organización";
+    ViewData["Title"] = "Administrar Organizaciones";
     var mensajeEliminado = TempData["mensajeEliminado"];
     var mensajeEditado = TempData["mensajeEditado"];
     var mensajeAgregado = TempData["mensajeAgregado"];
     var mensajeError = TempData["mensajeError"];
 }
 <div class="text-center pt-2 mb-2">
-    <h1 class="display-4">Administrar Tipos de Organización</h1>
-    <a asp-action="Add" class="btn btn-primary mb-4">Agregar tipo de organización</a>
+    <h1 class="display-4">Administrar Organizaciones</h1>
+    <a asp-action="Add" class="btn btn-primary mb-4">Agregar organización</a>
 </div>
 <div class="container text-center">
     @if (Model.Any())
@@ -19,7 +19,10 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
+                    <th>Nombre</th>
                     <th>Tipo</th>
+                    <th>Fecha Creación</th>
+                    <th>Activo</th>
                     <th>Eliminado</th>
                     <th>Opciones</th>
                 </tr>
@@ -30,19 +33,39 @@
                     @if (item.IsDeleted)
                     {
                         <tr class="isDeleted">
-                            <th scope="row">@item.OrganizationTypeId</th>
+                            <th scope="row">@item.OrganizationId</th>
+                            <th><p>@item.OrganizationName</p></th>
                             <th><p>@item.OrganizationTypeName</p></th>
+                            <th><p>@item.CreationDate</p></th>
+                            @if (item.IsActive)
+                            {
+                                <th><input class="form-check-input" type="checkbox" checked disabled /></th>
+                            }
+                            else
+                            {
+                                <th><input class="form-check-input" type="checkbox" disabled /></th>
+                            }
                             <th><input class="form-check-input" type="checkbox" checked disabled /></th>
-                            <th><a asp-action="Edit" asp-route-id="@item.OrganizationTypeId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
+                            <th><a asp-action="Edit" asp-route-id="@item.OrganizationId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
                         </tr>
                     }
                     else
                     {
                         <tr>
-                            <th scope="row">@item.OrganizationTypeId</th>
+                            <th scope="row">@item.OrganizationId</th>
+                            <th><p>@item.OrganizationName</p></th>
                             <th><p>@item.OrganizationTypeName</p></th>
+                            <th><p>@item.CreationDate</p></th>
+                            @if (item.IsActive)
+                            {
+                                <th><input class="form-check-input" type="checkbox" checked disabled /></th>
+                            }
+                            else
+                            {
+                                <th><input class="form-check-input" type="checkbox" disabled /></th>
+                            }
                             <th><input class="form-check-input" type="checkbox" disabled /></th>
-                            <th><a asp-action="Edit" asp-route-id="@item.OrganizationTypeId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
+                            <th><a asp-action="Edit" asp-route-id="@item.OrganizationId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
                         </tr>
                     }
                 }
@@ -51,7 +74,7 @@
     }
     else
     {
-        <h1>No hay tipos de organización para mostrar... <a asp-action="Add">Haga click aqui si desea agregar uno.</a></h1>
+        <h1>No hay organizaciones para mostrar... <a asp-action="Add">Haga click aqui si desea agregar uno.</a></h1>
     }
 </div>
 
