@@ -5,3 +5,10 @@
 /.vs
 /.vs/MLT.Rifa2.MVC/v17/.wsuo
 /.vs/MLT.Rifa2.MVC/FileContentIndex/e1849c25-e313-4eee-963d-73545cfbccc4.vsidx
+/.vs/MLT.Rifa2.MVC/FileContentIndex/read.lock
+/obj/Debug/net6.0/MLT.Rifa2.MVC.assets.cache
+/obj/Debug/net6.0/MLT.Rifa2.MVC.GeneratedMSBuildEditorConfig.editorconfig
+/obj/MLT.Rifa2.MVC.csproj.nuget.dgspec.json
+/obj/MLT.Rifa2.MVC.csproj.nuget.g.props
+/obj/project.assets.json
+/obj/project.nuget.cache
