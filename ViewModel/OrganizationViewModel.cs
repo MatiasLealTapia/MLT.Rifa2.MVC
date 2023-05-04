@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using MLT.Rifa2.MVC.DTOs;
 using System.ComponentModel.DataAnnotations;
 
 namespace MLT.Rifa2.MVC.ViewModel

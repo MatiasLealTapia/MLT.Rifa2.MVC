@@ -46,5 +46,88 @@ namespace MLT.Rifa2.MVC.Services
                 throw new Exception("Error en Integración - Intente mas tarde.");
             }
         }
+
+        public async Task<List<GenericItemDTO>> GetOrganizations()
+        {
+            string apiUrl = $"GetOrganizations";
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var datos = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<List<GenericItemDTO>>(datos);
+                    return responseData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
+        }
+
+        public async Task<GenericItemDTO> GetOrganization(int idObj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<GenericItemDTO>> GetReferents()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GenericItemDTO> GetReferent(int idObj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GenericItemDTO> GetReferentByRut(int referentRut)
+        {
+            string apiUrl = $"GetReferentByRut/" + referentRut;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var datos = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<GenericItemDTO>(datos);
+                    return responseData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
+        }
+
+        public async Task<GenericItemDTO> GetReferentByEmail(string referentEmail)
+        {
+            string apiUrl = $"GetReferentByEmail/"+ referentEmail;
+            try
+            {
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var datos = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<GenericItemDTO>(datos);
+                    return responseData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
+        }
+
+        public async Task<List<GenericItemDTO>> GetReferentsByOrganizationId(int organizationId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

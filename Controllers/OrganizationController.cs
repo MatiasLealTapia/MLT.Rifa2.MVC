@@ -77,23 +77,17 @@ namespace MLT.Rifa2.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                TempData["mensajeError"] = "Ha ocurrido un error inesperado.";
+                return await Edit(model.OrganizationId);
             }
             var ok = await _organizationService.Edit(model);
             if (ok)
             {
-                TempData["mensajeEditado"] = "El tipo de organizacion ha sido editado exitosamente.";
+                TempData["mensajeEditado"] = "La organizacion ha sido editada exitosamente.";
                 return RedirectToAction("List");
             }
             TempData["mensajeError"] = "Ha ocurrido un error inesperado.";
-            var orgTypes = await _genericService.GetOrganizationTypes();
-            var orgTypeListItems = orgTypes.Select(ot => new SelectListItem
-            {
-                Value = ot.Id.ToString(),
-                Text = ot.Detail
-            });
-            model.OrganizationTypeListItems = orgTypeListItems;
-            return View(model);
+            return await Edit(model.OrganizationId);
         }
         [HttpPost]
         public async Task<ActionResult> Delete(int idObj)
@@ -101,21 +95,11 @@ namespace MLT.Rifa2.MVC.Controllers
             var ok = await _organizationService.Delete(idObj);
             if (ok)
             {
-                TempData["mensajeEliminado"] = "El tipo de organizacion ha sido eliminado exitosamente.";
+                TempData["mensajeEliminado"] = "La organizacion ha sido eliminada exitosamente.";
                 return RedirectToAction("List");
             }
             TempData["mensajeError"] = "Ha ocurrido un error inesperado.";
             return RedirectToAction("List");
-        }
-        public async Task<ActionResult> GetTypes()
-        {
-            var orgTypes = await _genericService.GetOrganizationTypes();
-            var orgTypeListItems = orgTypes.Select(ot => new SelectListItem
-            {
-                Value = ot.Id.ToString(),
-                Text = ot.Detail
-            });
-            return Json(orgTypeListItems);
         }
     }
 }

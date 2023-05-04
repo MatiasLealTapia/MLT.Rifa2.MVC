@@ -1,0 +1,142 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model IEnumerable<ReferentViewModel>
+
+@{
+    ViewData["Title"] = "Administrar Referentes";
+    var mensajeEliminado = TempData["mensajeEliminado"];
+    var mensajeEditado = TempData["mensajeEditado"];
+    var mensajeAgregado = TempData["mensajeAgregado"];
+    var mensajeError = TempData["mensajeError"];
+}
+<div class="text-center pt-2 mb-2">
+    <h1 class="display-4">Administrar Referentes</h1>
+    <a asp-action="Add" class="btn btn-primary mb-4">Agregar Referente</a>
+</div>
+<div class="container text-center">
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th>RUT</th>
+                    <th>DV</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Codigo</th>
+                    <th>Organización</th>
+                    <th>Fecha Creación</th>
+                    <th>Activo</th>
+                    <th>Eliminado</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if (item.IsDeleted)
+                    {
+                        <tr class="isDeleted">
+                            <th scope="row">@item.ReferentId</th>
+                            <th><p>@item.ReferentRUT</p></th>
+                            <th><p>@item.ReferentDV</p></th>
+                            <th><p>@item.ReferentFirstName</p></th>
+                            <th><p>@item.ReferentLastName</p></th>
+                            <th><p>@item.ReferentCode</p></th>
+                            <th><p>@item.OrganizationName</p></th>
+                            <th><p>@item.CreationDate</p></th>
+                            @if (item.IsActive)
+                            {
+                                <th><input class="form-check-input" type="checkbox" checked disabled /></th>
+                            }
+                            else
+                            {
+                                <th><input class="form-check-input" type="checkbox" disabled /></th>
+                            }
+                            <th><input class="form-check-input" type="checkbox" checked disabled /></th>
+                            <th><a asp-action="Edit" asp-route-id="@item.ReferentId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th scope="row">@item.ReferentId</th>
+                            <th><p>@item.ReferentRUT</p></th>
+                            <th><p>@item.ReferentDV</p></th>
+                            <th><p>@item.ReferentFirstName</p></th>
+                            <th><p>@item.ReferentLastName</p></th>
+                            <th><p>@item.ReferentCode</p></th>
+                            <th><p>@item.OrganizationName</p></th>
+                            <th><p>@item.CreationDate</p></th>
+                            @if (item.IsActive)
+                            {
+                                <th><input class="form-check-input" type="checkbox" checked disabled /></th>
+                            }
+                            else
+                            {
+                                <th><input class="form-check-input" type="checkbox" disabled /></th>
+                            }
+                            <th><input class="form-check-input" type="checkbox" disabled /></th>
+                            <th><a asp-action="Edit" asp-route-id="@item.ReferentId" class="btn btn-primary text-decoration-none"><i class="bi bi-pencil-fill"> Editar</i></a></th>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <h1>No hay referentes para mostrar... <a asp-action="Add">Haga click aqui si desea agregar uno.</a></h1>
+    }
+</div>
+
+@section Scripts{
+    @if (mensajeEliminado != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Eliminado!',
+                    text: '@mensajeEliminado',
+                    icon: 'success'
+                });
+            });
+        </script>
+    }
+    @if (mensajeEditado != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Editado!',
+                    text: '@mensajeEditado',
+                    icon: 'success'
+                });
+            });
+        </script>
+    }
+    @if (mensajeAgregado != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Agregado!',
+                    text: '@mensajeAgregado',
+                    icon: 'success'
+                });
+            });
+        </script>
+    }
+    @if (mensajeError != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: '@mensajeError',
+                    icon: 'error'
+                });
+            });
+        </script>
+    }
+}

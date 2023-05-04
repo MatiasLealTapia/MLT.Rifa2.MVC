@@ -14,3 +14,5 @@
 /obj/project.nuget.cache
 /obj/Debug/net6.0
 /obj
+/bin/Debug/net6.0
+/MLT.Rifa2.MVC.csproj.user

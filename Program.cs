@@ -49,6 +49,11 @@ builder.Services.AddHttpClient<IGenericService, GenericService>(c =>
     c.Timeout = TimeSpan.FromMinutes(5);
     c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Generic/");
 });
+builder.Services.AddHttpClient<IReferentService, ReferentService>(c =>
+{
+    c.Timeout = TimeSpan.FromMinutes(5);
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Referent/");
+});
 
 var app = builder.Build();
 

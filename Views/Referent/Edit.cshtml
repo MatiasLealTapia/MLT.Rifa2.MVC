@@ -1,0 +1,230 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model ReferentViewModel
+
+@{
+    ViewData["Title"] = "Editar referente rut " + Model.ReferentRUT;
+    var mensajeError = TempData["mensajeError"];
+    var controller = "Referent";
+}
+
+<div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Editando referente rut @Model.ReferentRUT</h5>
+            <a asp-action="List" type="button" class="btn"><i class="bi bi-arrow-left"></i></a>
+        </div>
+        @if (!Model.IsDeleted)
+        {
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="ReferentId" />
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-10">
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" asp-for="ReferentRUT" placeholder="RUT" disabled />
+                                <label>RUT</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="ReferentDV" placeholder="DV" disabled />
+                                <label>DV</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="ReferentFirstName" placeholder="Nombre" />
+                                <label>Nombre</label>
+                                <span asp-validation-for="ReferentFirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" asp-for="ReferentLastName" placeholder="Apellido" />
+                                <label>Apellido</label>
+                                <span asp-validation-for="ReferentLastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" asp-for="ReferentEmail" placeholder="Email" />
+                                <label>Email</label>
+                                <span asp-validation-for="ReferentEmail" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" asp-for="ReferentPhone" placeholder="Celular" />
+                                <label>Celular</label>
+                                <span asp-validation-for="ReferentPhone" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" asp-for="ReferentBirthDay" placeholder="Cumpleaños" />
+                                <label>Cumpleaños</label>
+                                <span asp-validation-for="ReferentBirthDay" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-group mb-3">
+                                <label class="mb-1">Organización</label>
+                                <select class="form-select" asp-for="OrganizationId"
+                                    asp-items="@Model.OrganizationListItems">
+                                    <option value="">Selecciona una organización</option>
+                                </select>
+                                <span asp-validation-for="OrganizationId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-check mb-3">
+                                <label class="form-check-label" asp-for="IsActive">
+                                    Activado
+                                </label>
+                                <input class="form-check-input" type="checkbox" name="IsActive" asp-for="IsActive" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" disabled />
+                                <label class="form-check-label">Eliminado</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Editar</button>
+                            <button type="button" onclick="willDelete(@Model.ReferentId, '@controller')" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <a asp-action="List" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+        }
+        else
+        {
+            <div class="modal-body isDeleted">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" asp-for="ReferentRUT" placeholder="RUT" disabled />
+                            <label>RUT</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" asp-for="ReferentDV" placeholder="DV" disabled />
+                            <label>DV</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" asp-for="ReferentFirstName" placeholder="Nombre" disabled />
+                            <label>Nombre</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" asp-for="ReferentLastName" placeholder="Apellido" disabled />
+                            <label>Apellido</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" asp-for="ReferentEmail" placeholder="Email" disabled />
+                            <label>Email</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" asp-for="ReferentPhone" placeholder="Celular" disabled />
+                            <label>Celular</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" asp-for="ReferentBirthDay" placeholder="Cumpleaños" disabled />
+                            <label>Cumpleaños</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-group mb-3">
+                            <label class="mb-1">Organización</label>
+                            <select class="form-select" asp-for="OrganizationId"
+                                asp-items="@Model.OrganizationListItems" disabled>
+                                <option value="">Selecciona una organización</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" disabled />
+                            <label class="form-check-label">Activado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" checked disabled />
+                            <label class="form-check-label">Eliminado</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <button class="btn btn-primary mb-2 disabled"><i class="bi bi-pencil-fill"></i> Editar</button>
+                        <button class="btn btn-danger mb-2 disabled"><i class="bi bi-trash-fill"></i> Eliminar</button>
+                    </div>
+                </div>
+            </div>
+            <h4 class="m-5">El referente rut @Model.ReferentRUT esta borrado, no puedes editarlo.</h4>
+            <a asp-action="List" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Volver</a>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    @if (mensajeError != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: '@mensajeError',
+                    icon: 'error'
+                });
+            });
+        </script>
+    }
+}
