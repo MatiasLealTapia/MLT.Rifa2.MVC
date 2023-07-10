@@ -1,4 +1,5 @@
-﻿using MLT.Rifa2.MVC.ViewModel;
+﻿using MLT.Rifa2.MVC.DTOs;
+using MLT.Rifa2.MVC.ViewModel;
 
 namespace MLT.Rifa2.MVC.Interfaces
 {
@@ -9,5 +10,6 @@ namespace MLT.Rifa2.MVC.Interfaces
         Task<bool> Edit(OrganizationViewModel obj);
         Task<OrganizationViewModel> Get(int id);
         Task<IEnumerable<OrganizationViewModel>> GetList();
+        Task<OrganizationViewModel> Login(OrganizationLogIn orgLogin);
     }
 }

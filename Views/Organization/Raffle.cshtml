@@ -1,0 +1,51 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model RaffleViewModel
+@{
+    ViewData["Title"] = "Ver rifa";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title pt-2">Rifa Nombre de la rifa</h5>
+                </div>
+                <hr />
+                <div class="card-body m-2">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <p>Descripcion</p>
+                        </div>
+                        <hr />
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <p>Fecha inicio: 16/06/2023</p>
+                            
+                        </div>
+                        <div class="col-6">
+                            <p>Fecha termino: </p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <p>Total de números: 1000</p>
+                        </div>
+                        <div class="col-6">
+                            <p>Precio de número: 1000</p>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        @for (int i = 1; i <= 1000; i++)
+                        {
+                            <div class="col-1 px-1 my-1">
+                                <button class="btn btn-primary">@i</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

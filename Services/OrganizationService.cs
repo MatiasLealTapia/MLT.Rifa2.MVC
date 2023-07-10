@@ -1,4 +1,5 @@
 ﻿using MLT.Rifa2.MVC.DTOs;
+using MLT.Rifa2.MVC.Generic;
 using MLT.Rifa2.MVC.Interfaces;
 using MLT.Rifa2.MVC.ViewModel;
 using Newtonsoft.Json;
@@ -135,6 +136,43 @@ namespace MLT.Rifa2.MVC.Services
                     var datos = await response.Content.ReadAsStringAsync();
                     var responseData = JsonConvert.DeserializeObject<IEnumerable<OrganizationViewModel>>(datos);
                     return responseData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
+        }
+
+        public async Task<OrganizationViewModel> Login(OrganizationLogIn orgLogin)
+        {
+            string apiUrl = $"Login";
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+                var passwordHash = Tools.Encrypt(orgLogin.Password);
+                var orgLoginDTO = new OrgAdminLogInDTO()
+                {
+                    OrgAdminEmail = orgLogin.Email,
+                    OrgAdminPasswordHash = passwordHash
+                };
+                var response = await _httpClient.PostAsync(apiUrl, new StringContent(JsonConvert.SerializeObject(orgLoginDTO), Encoding.UTF8, "application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<OrganizationDTO>(data);
+                    var orgViewModel = new OrganizationViewModel
+                    {
+                        OrganizationId = responseData.OrganizationId,
+                        OrganizationName = responseData.OrganizationName,
+                        OrganizationTypeId = responseData.OrganizationTypeId,
+                        OrganizationTypeName = responseData.OrganizationTypeName,
+                        CreationDate = responseData.CreationDate
+                    };
+                    return orgViewModel;
                 }
                 return null;
             }

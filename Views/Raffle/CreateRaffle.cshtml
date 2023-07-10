@@ -1,0 +1,80 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@model RaffleViewModel
+@{
+    ViewData["Title"] = "Crear Rifa";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="text-center pt-4 mb-2">
+                <h1 class="display-4"><b>Creación de rifa</b></h1>
+                <h4>para organizaciones.</h4>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title pt-2">Creación de rifa</h5>
+                </div>
+                <div class="card-body m-2">
+                    <form asp-action="CreateRaffle">
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="text" asp-for="RaffleName" class="form-control" placeholder="Nombre" />
+                                    <label class="form-label">Nombre</label>
+                                    <span asp-validation-for="RaffleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="number" asp-for="RaffleNumbersAmount" class="form-control" placeholder="¿Cuantos números?" />
+                                    <label class="form-label">¿Cuantos números?</label>
+                                    <span asp-validation-for="RaffleNumbersAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="number" asp-for="RaffleNumberPrice" class="form-control" placeholder="Precio" />
+                                    <label class="form-label">Precio</label>
+                                    <span asp-validation-for="RaffleNumberPrice" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <textarea asp-for="RaffleDescription" class="form-control" placeholder="Descripción"></textarea>
+                                    <label class="form-label">Descripción</label>
+                                    <span asp-validation-for="RaffleDescription" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="date" asp-for="RaffleBeginDate" class="form-control" placeholder="Fecha Inicio" />
+                                    <label class="form-label">Fecha Inicio</label>
+                                    <span asp-validation-for="RaffleBeginDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-12 mb-3">
+                                <div class="form-floating">
+                                    <input type="date" asp-for="RaffleEndDate" class="form-control" placeholder="Fecha Final" />
+                                    <label class="form-label">Fecha Final</label>
+                                    <span asp-validation-for="RaffleEndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

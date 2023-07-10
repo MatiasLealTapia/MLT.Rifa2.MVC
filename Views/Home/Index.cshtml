@@ -1,8 +1,68 @@
 ﻿@{
     ViewData["Title"] = "Inicio";
+    var mensajeIngresado = TempData["mensajeIngresado"];
+    var mensajeError = TempData["mensajeError"];
 }
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/carousel/BG rifa2.png" class="d-block w-100" alt="~/img/carousel/descarga.jpg">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><b>TU PORTAL DE RIFAS PREFERIDO</b></h5>
+                <p>Busca las rifas de tus organizaciones preferidas.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/carousel/org bg.jpg" class="d-block w-100" alt="~/img/carousel/descarga.jpg">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><b>WEB PARA ORGANIZACIONES</b></h5>
+                <p>Si eres una organización, puedes presentarla con nosotros y crear una cuenta.</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 
 <div class="text-center">
     <h1 class="display-4"><b>Bienvenido</b> al portal de Rifas</h1>
     <h2 class="display-5"><b>Rifa2</b></h2>
 </div>
+
+@section Scripts {
+    @if (mensajeIngresado != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Ingresado!',
+                    text: '@mensajeIngresado',
+                    icon: 'success'
+                });
+            });
+        </script>
+    }
+    @if (mensajeError != null)
+    {
+        <script>
+            $(document).ready(function () {
+                Swal.fire({
+                    title: '¡Error!',
+                    text: '@mensajeError',
+                    icon: 'error'
+                });
+            });
+        </script>
+    }
+}

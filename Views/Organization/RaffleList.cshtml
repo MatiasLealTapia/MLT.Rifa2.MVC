@@ -1,0 +1,41 @@
+﻿@using MLT.Rifa2.MVC.ViewModel
+@using System.Security.Claims;
+@model IEnumerable<RaffleViewModel>
+@{
+    ViewData["Title"] = "Lista de rifas";
+}
+
+<div class="text-center pt-4 mb-2">
+    <h1 class="display-4"><b>Rifas de la organización</b></h1>
+    <h4>@User.FindFirstValue("FirstName")</h4>
+</div>
+
+<div class="container">
+    <div class="pt-2">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nombre</td>
+                    <td>Fecha Inicio</td>
+                    <td>Opciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var raffle in Model)
+                    {
+                        if (!raffle.IsDeleted)
+                        {
+                            <tr>
+                                <td>@raffle.RaffleName</td>
+                                <td>@raffle.RaffleBeginDate</td>
+                                <td><a class="btn btn-primary" asp-action="Raffle">Entrar</a></td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

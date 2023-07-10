@@ -1,21 +1,15 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:42900",
-      "sslPort": 44305
-    }
-  },
+{
   "profiles": {
     "MLT.Rifa2.MVC": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7017;http://localhost:5134",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "API_KEY": "558E3F5B-8A7F-4D7B-B45C-363L0E1705A9",
+        "SECRET_KEY": "19d01798572f29e12f74ea2618fb80ddf942656d"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7017;http://localhost:5134"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -23,6 +17,14 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:42900",
+      "sslPort": 44305
     }
   }
 }

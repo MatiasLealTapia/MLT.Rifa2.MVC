@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MLT.Rifa2.MVC.Models;
 using System.Diagnostics;
 
@@ -23,6 +24,7 @@ namespace MLT.Rifa2.MVC.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult AdminList()
         {
             return View();

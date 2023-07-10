@@ -17,13 +17,13 @@ var politicaUsuariosAutenticados = new AuthorizationPolicyBuilder()
 //{
 //    opciones.Filters.Add(new AuthorizeFilter(politicaUsuariosAutenticados));
 //});
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opciones =>
-//    {
-//        opciones.LoginPath = "/LogIn/LogIn";
-//        opciones.LogoutPath = "/LogIn/LogOut";
-//        opciones.AccessDeniedPath = "/LogIn/AccessDenied";
-//    });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Login/LoginUser";
+        options.LogoutPath = "/Login/Logout";
+        options.AccessDeniedPath = "/Login/AccessDenied";
+    });
 //builder.Services.AddAuthorization(opciones =>
 //{
 //    opciones.FallbackPolicy = new AuthorizationPolicyBuilder()
@@ -53,6 +53,16 @@ builder.Services.AddHttpClient<IReferentService, ReferentService>(c =>
 {
     c.Timeout = TimeSpan.FromMinutes(5);
     c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Referent/");
+});
+builder.Services.AddHttpClient<ILoginService, LoginService>(c =>
+{
+    c.Timeout = TimeSpan.FromMinutes(5);
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Login/");
+});
+builder.Services.AddHttpClient<IRaffleService, RaffleService>(c =>
+{
+    c.Timeout = TimeSpan.FromMinutes(5);
+    c.BaseAddress = new Uri($"{configuration.GetValue<string>("APIIntegration:Path")}Raffle/");
 });
 
 var app = builder.Build();

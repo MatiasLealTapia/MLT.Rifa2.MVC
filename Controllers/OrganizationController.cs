@@ -1,19 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MLT.Rifa2.MVC.Interfaces;
 using MLT.Rifa2.MVC.Services;
 using MLT.Rifa2.MVC.ViewModel;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Cryptography;
+using MLT.Rifa2.MVC.DTOs;
 
 namespace MLT.Rifa2.MVC.Controllers
 {
     public class OrganizationController : Controller
     {
         private readonly IOrganizationService _organizationService;
+        private readonly IRaffleService _raffleService;
         private readonly IGenericService _genericService;
 
-        public OrganizationController(IOrganizationService organizationService, IGenericService genericService)
+        public OrganizationController(IOrganizationService organizationService, IRaffleService raffleService, IGenericService genericService)
         {
             _organizationService = organizationService;
+            _raffleService = raffleService;
             _genericService = genericService;
         }
         public async Task<ActionResult> List()
@@ -38,7 +46,7 @@ namespace MLT.Rifa2.MVC.Controllers
         [HttpPost]
         public async Task<ActionResult> Add(OrganizationViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
@@ -100,6 +108,93 @@ namespace MLT.Rifa2.MVC.Controllers
             }
             TempData["mensajeError"] = "Ha ocurrido un error inesperado.";
             return RedirectToAction("List");
+        }
+
+        [Authorize(Roles = "Organization")]
+        [HttpGet]
+        public IActionResult Options()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Organization")]
+        [HttpGet]
+        public async Task<IActionResult> RaffleList()
+        {
+            var orgUser = User;
+            var orgId = int.Parse(orgUser.FindFirstValue("OrganizationId"));
+            var list = await _raffleService.GetListByOrganization(orgId);
+            return View(list);
+        }
+
+        [Authorize(Roles = "Organization")]
+        [HttpGet]
+        public async Task<IActionResult> Raffle(int raffleId)
+        {
+            //var raffle = await _raffleService.GetRaffleById(raffleId);
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Payment()
+        {
+            var url = Url.Action("CreatePayment", "Payment");
+
+            // Redirige a la URL
+            return Redirect(url);
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(OrganizationLogIn model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Verificar las credenciales del usuario y obtener los roles
+                var orgVM = await VerifyCredentials(model);
+
+                if (orgVM != null)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, model.Email),
+                        new Claim(ClaimTypes.Role, "Organization"),
+                        new Claim("FirstName", orgVM.OrganizationName),
+                        new Claim("OrganizationId", orgVM.OrganizationId.ToString()),
+                        new Claim("OrganizationName", orgVM.OrganizationName),
+                        new Claim("OrganizationTypeId", orgVM.OrganizationTypeId.ToString()),
+                        new Claim("OrganizationTypeName", orgVM.OrganizationTypeName),
+                        new Claim("CreationDate", orgVM.CreationDate.ToString("dd/MM/yyyy"))
+                    };
+
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                    // El usuario ha iniciado sesión correctamente
+                    return RedirectToAction("Options");
+                }
+
+                ModelState.AddModelError(string.Empty, "Nombre de usuario o contraseña incorrectos");
+            }
+
+            // El modelo no es válido, muestra la vista de inicio de sesión con los errores
+            return View(model);
+        }
+        private async Task<OrganizationViewModel> VerifyCredentials(OrganizationLogIn orgLogin)
+        {
+            var verifyCred = await _organizationService.Login(orgLogin);
+            if (verifyCred != null)
+            {
+                return verifyCred;
+            }
+            return null;
         }
     }
 }
