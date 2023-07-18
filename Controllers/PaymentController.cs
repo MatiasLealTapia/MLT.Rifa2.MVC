@@ -16,7 +16,68 @@ namespace MLT.Rifa2.MVC.Controllers
             var parameters = new Dictionary<string, string>
                             {
                                 { "apiKey", apiKey },
-                                { "commerceOrder", "71493" },
+                                { "commerceOrder", "71494" },
+                                { "subject", "Descripción de la orden" },
+                                { "currency", "CLP" },
+                                { "amount", "5000" },
+                                { "email", "matiasa.lealt.23@gmail.com" },
+                                { "urlConfirmation", "https://localhost:7017/Payment/PaymentConfirmation" },
+                                { "urlReturn", "https://localhost:7017/Payment/PaymentConfirmation" },
+                            };
+
+            // Genera la firma
+            string signature = GenerateSignature(parameters, secretKey);
+
+            // Agrega la firma a los parámetros
+            parameters.Add("s", signature);
+
+            // Construye la URL del servicio a consumir
+            string baseUrl = "https://sandbox.flow.cl/api";
+            string endpoint = "/payment/create";
+            string url = baseUrl + endpoint;
+
+            // Crea el cliente RestSharp
+            var client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+
+            // Agrega los parámetros al cuerpo de la solicitud
+            foreach (var parameter in parameters)
+            {
+                request.AddParameter(parameter.Key, parameter.Value);
+            }
+
+            // Realiza la llamada POST utilizando RestSharp
+            var response = client.Execute(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var responseObject = JObject.Parse(response.Content);
+
+                // Obtiene la URL de redirección y el token desde la respuesta
+                string paymentUrl = responseObject["url"].ToString();
+                string token = responseObject["token"].ToString();
+
+                // Construye la URL de redirección
+                string redirectUrl = paymentUrl + "?token=" + token;
+
+                // Redirige al usuario a la página de pago de Flow
+                return Redirect(redirectUrl);
+            }
+            else
+            {
+                // Procesa el error
+
+                // Redirige al usuario a una página de error en tu sitio web
+                return RedirectToAction("PaymentError");
+            }
+        }
+
+        public IActionResult CreateRafflePayment(int id)
+        {
+            var parameters = new Dictionary<string, string>
+                            {
+                                { "apiKey", apiKey },
+                                { "commerceOrder", id.ToString() },
                                 { "subject", "Descripción de la orden" },
                                 { "currency", "CLP" },
                                 { "amount", "5000" },

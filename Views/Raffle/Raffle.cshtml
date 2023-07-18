@@ -21,7 +21,7 @@
                     <div class="row mb-3">
                         <div class="col-6">
                             <p>Fecha inicio: @Model.RaffleBeginDate.ToString("dd/MM/yyyy")</p>
-                            
+
                         </div>
                         <div class="col-6">
                             <p>Fecha termino: @Model.RaffleEndDate.ToString("dd/MM/yyyy")</p>
@@ -51,15 +51,15 @@
                             <div class="col-1 px-1 my-1">
                                 @if (number.IsDeleted)
                                 {
-                                    <button class="btn btn-danger" asp-action="Payment">@number.NumberPosition</button>
-                                } 
+                                    <button class="btn btn-danger">@number.NumberPosition</button>
+                                }
                                 else if (number.IsBuyed)
                                 {
-                                    <button class="btn btn-success" asp-action="Payment">@number.NumberPosition</button>
+                                    <button class="btn btn-success">@number.NumberPosition</button>
                                 }
                                 else
                                 {
-                                    <button class="btn btn-primary" asp-action="Payment">@number.NumberPosition</button>
+                                    <a class="btn btn-primary" asp-action="Payment" asp-route-id="@(number.NumberId)">@number.NumberPosition</a>
                                 }
                             </div>
                         }

@@ -129,10 +129,10 @@ namespace MLT.Rifa2.MVC.Controllers
 
         [Authorize(Roles = "Organization")]
         [HttpGet]
-        public async Task<IActionResult> Raffle(int raffleId)
+        public async Task<IActionResult> Raffle(int id)
         {
-            //var raffle = await _raffleService.GetRaffleById(raffleId);
-            return View();
+            var raffle = await _raffleService.GetRaffleById(id);
+            return View(raffle);
         }
 
         [HttpGet]

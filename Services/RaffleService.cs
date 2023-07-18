@@ -54,6 +54,30 @@ namespace MLT.Rifa2.MVC.Services
             }
         }
 
+        public async Task<IEnumerable<RaffleViewModel>> GetList()
+        {
+            string apiUrl = $"GetList";
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            try
+            {
+
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    var datos = await response.Content.ReadAsStringAsync();
+                    var responseData = JsonConvert.DeserializeObject<IEnumerable<RaffleViewModel>>(datos);
+                    return responseData;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
+        }
+
         public async Task<IEnumerable<RaffleViewModel>> GetListByOrganization(int orgId)
         {
             string apiUrl = $"GetListByOrganization/" + orgId;
@@ -61,7 +85,7 @@ namespace MLT.Rifa2.MVC.Services
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             try
             {
-                
+
                 HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
                 if (response.IsSuccessStatusCode)
                 {
@@ -80,7 +104,7 @@ namespace MLT.Rifa2.MVC.Services
 
         public async Task<RaffleViewModel> GetRaffleById(int raffleId)
         {
-            string apiUrl = $"GetRaffleById" + raffleId;
+            string apiUrl = $"GetRaffleById/" + raffleId;
             HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
             if (response.IsSuccessStatusCode)
             {
@@ -95,6 +119,8 @@ namespace MLT.Rifa2.MVC.Services
                     RaffleNumbersAmount = responseData.RaffleNumbersAmount,
                     RaffleBeginDate = responseData.RaffleBeginDate,
                     RaffleEndDate = responseData.RaffleEndDate,
+                    Rewards = responseData.Rewards,
+                    Numbers = responseData.Numbers,
                     OrganizationId = responseData.OrganizationId,
                     OrganizationName = responseData.OrganizationName,
                     RaffleCreationDate = responseData.RaffleCreationDate,
@@ -103,6 +129,25 @@ namespace MLT.Rifa2.MVC.Services
                 return raffleVM;
             }
             return null;
+        }
+
+        public async Task<bool> NumberBuyed(int numberId)
+        {
+            try
+            {
+                string apiUrl = $"NumberBuyed/" + numberId;
+                HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.InnerException.ToString());
+                throw new Exception("Error en Integración - Intente mas tarde.");
+            }
         }
     }
 }

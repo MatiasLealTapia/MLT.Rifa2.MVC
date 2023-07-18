@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MLT.Rifa2.MVC.DTOs;
+using System.ComponentModel.DataAnnotations;
 
 namespace MLT.Rifa2.MVC.ViewModel
 {
@@ -16,8 +17,8 @@ namespace MLT.Rifa2.MVC.ViewModel
         public DateTime RaffleBeginDate { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "El campo es requerido.")]
         public DateTime RaffleEndDate { get; set; }
-        public IEnumerable<RewardViewModel> Rewards { get; set; }
-        public IEnumerable<NumberViewModel> Numbers { get; set; }
+        public IEnumerable<RewardDTO> Rewards { get; set; }
+        public IEnumerable<NumberDTO> Numbers { get; set; }
         public int OrganizationId { get; set; }
         public string OrganizationName { get; set; }
         public DateTime RaffleCreationDate { get; set; }

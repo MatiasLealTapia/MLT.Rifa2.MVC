@@ -27,6 +27,9 @@
                         <li class="nav-item d-none">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Raffle" asp-action="RaffleList">Rifas</a>
+                        </li>
                         @if (User.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == "Admin"))
                         {
                             <li class="nav-item">
